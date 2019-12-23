@@ -46,7 +46,7 @@ done
 setup_haproxy() {
     # Install haproxy
     apt-get install -y software-properties-common
-    add-apt-repository -y ppa:vbernat/haproxy-1.6
+    add-apt-repository -y ppa:vbernat/haproxy-1.8 
     apt-get update
     apt-get install -y haproxy    
 
@@ -121,7 +121,7 @@ setup_keepalived() {
     # Default version available in Ubuntu 14.04 is 1.2.7-1ubuntu1. 
 
     # Install a newer version of keepalived from a ppa.
-    add-apt-repository -y ppa:keepalived/stable && apt-get -y update && apt-get install -y keepalived
+    sudo snap install keepalived --classic
 
     # Setup keepalived.conf
     KEEPALIVED_CFG=/etc/keepalived/keepalived.conf
