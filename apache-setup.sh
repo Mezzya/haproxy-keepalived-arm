@@ -1,6 +1,7 @@
 #!/bin/bash
 
-apt-get -y update
-apt-get install -y apache2
+apt -y update
+apt -y upgrade
+apt install -y apache2
 systemctl start apache2
 systemctl enable apache2
