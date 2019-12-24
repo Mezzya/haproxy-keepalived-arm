@@ -84,9 +84,6 @@ defaults
     mode    http
     option  httplog
     option  dontlognull
-    contimeout 5000
-    clitimeout 50000
-    srvtimeout 50000
     
 
 # Listen on all IP addresses. This is required for load balancer probe to work
