@@ -45,10 +45,8 @@ done
 
 setup_haproxy() {
     # Install haproxy
-    apt-get install -y software-properties-common
-    add-apt-repository -y ppa:vbernat/haproxy-1.8 
-    apt-get update -y
-    apt-get install -y haproxy    
+    yum -y update
+    yum -y install haproxy
 
     # Enable haproxy (to be started during boot)
     # tmpf=`mktemp` && mv /etc/default/haproxy $tmpf && sed -e "s/ENABLED=0/ENABLED=1/" $tmpf > /etc/default/haproxy && chmod --reference $tmpf /etc/default/haproxy
@@ -122,8 +120,8 @@ setup_keepalived() {
 
     # Install a newer version of keepalived from a ppa.
    # sudo snap install keepalived --classic
-    sudo apt-get install -y linux-headers-$(uname -r)
-    sudo apt-get install -y keepalived
+   # sudo apt-get install -y linux-headers-$(uname -r)
+    yum -y install keepalived
 
     # Setup keepalived.conf
     KEEPALIVED_CFG=/etc/keepalived/keepalived.conf
