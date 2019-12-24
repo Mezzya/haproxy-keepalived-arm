@@ -43,7 +43,7 @@
         "7.5"
       ],
       "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.5-LTS, 14.04.5-LTS, 15.10."
+        "description": "The CentOS version for the VM. This will pick a fully patched image of this given CentOS version. Allowed values: 12.04.5-LTS, 14.04.5-LTS, 15.10."
       }
     },
     "vmSize": {
@@ -55,7 +55,7 @@
     }
   },
   "variables": {
-    "scriptsBaseUrl": "https://raw.githubusercontent.com/Mezzya/haproxy-keepalived-arm/master/",
+    "scriptsBaseUrl": "https://raw.githubusercontent.com/Mezzya/haproxy-keepalived-arm/centos/",
     "storageAccountName": "[concat(uniqueString(resourceGroup().id), 'haproxysa')]",
     "numberOfHAproxyInstances": 2,
     "masterHAproxyInstanceIndex": 0,
@@ -75,8 +75,8 @@
       "commandToExecute": "sudo bash apache-setup.sh"
     },
     "appVMPort": 80,
-    "imagePublisher": "Canonical",
-    "imageOffer": "UbuntuServer",
+    "imagePublisher": "OpenLogic",
+    "imageOffer": "CentOS",
     "sshKeyPath": "[concat('/home/',parameters('adminUsername'),'/.ssh/authorized_keys')]",
     "nicNamePrefix": "nic-",
     "storageAccountType": "Standard_LRS",
