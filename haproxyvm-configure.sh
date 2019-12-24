@@ -46,8 +46,23 @@ done
 setup_haproxy() {
     # Install haproxy
     yum -y update
-    yum -y install haproxy
+    yum install gcc pcre-devel tar make -y
+    wget http://www.haproxy.org/download/2.1/src/haproxy-2.1.2.tar.gz -O ~/haproxy.tar.gz
+    tar xzvf ~/haproxy.tar.gz -C ~/
+    cd ~/haproxy-2.1.2
+    make TARGET=linux-glibc
+    make install
 
+    mkdir -p /etc/haproxy
+    mkdir -p /var/lib/haproxy
+    touch /var/lib/haproxy/stats
+
+    sudo ln -s /usr/local/sbin/haproxy /usr/sbin/haproxy
+    cp ~/haproxy-2.1.2/examples/haproxy.init /etc/init.d/haproxy
+    chmod 755 /etc/init.d/haproxy
+    systemctl daemon-reload
+    chkconfig haproxy on
+    useradd -r haproxy
     # Enable haproxy (to be started during boot)
     # tmpf=`mktemp` && mv /etc/default/haproxy $tmpf && sed -e "s/ENABLED=0/ENABLED=1/" $tmpf > /etc/default/haproxy && chmod --reference $tmpf /etc/default/haproxy
 
@@ -72,13 +87,7 @@ defaults
     contimeout 5000
     clitimeout 50000
     srvtimeout 50000
-    errorfile 400 /etc/haproxy/errors/400.http
-    errorfile 403 /etc/haproxy/errors/403.http
-    errorfile 408 /etc/haproxy/errors/408.http
-    errorfile 500 /etc/haproxy/errors/500.http
-    errorfile 502 /etc/haproxy/errors/502.http
-    errorfile 503 /etc/haproxy/errors/503.http
-    errorfile 504 /etc/haproxy/errors/504.http
+    
 
 # Listen on all IP addresses. This is required for load balancer probe to work
 listen http 
