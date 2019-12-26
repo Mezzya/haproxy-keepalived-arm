@@ -37,7 +37,7 @@
     },
     "ubuntuOSVersion": {
       "type": "string",
-      "defaultValue": "18.04-LTS",
+      "defaultValue": "7.5",
       "allowedValues": [
         "18.04-LTS",
         "7.5"
