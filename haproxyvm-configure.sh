@@ -63,6 +63,7 @@ setup_haproxy() {
     systemctl daemon-reload
     chkconfig haproxy on
     useradd -r haproxy
+    cd ~
     # Enable haproxy (to be started during boot)
     # tmpf=`mktemp` && mv /etc/default/haproxy $tmpf && sed -e "s/ENABLED=0/ENABLED=1/" $tmpf > /etc/default/haproxy && chmod --reference $tmpf /etc/default/haproxy
 
@@ -131,6 +132,7 @@ setup_keepalived() {
     cd keepalived-2.0.19
     ./configure --prefix=/; make; make install
     chkconfig keepalived on
+    cd ~
 
     # Setup keepalived.conf
     KEEPALIVED_CFG=/etc/keepalived/keepalived.conf
