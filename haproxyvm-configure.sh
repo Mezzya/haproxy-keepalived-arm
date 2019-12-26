@@ -125,9 +125,12 @@ setup_keepalived() {
     # Default version available in Ubuntu 14.04 is 1.2.7-1ubuntu1. 
 
     # Install a newer version of keepalived from a ppa.
-   # sudo snap install keepalived --classic
-   # sudo apt-get install -y linux-headers-$(uname -r)
-    yum -y install keepalived
+    yum -y install gcc kernel-headers openssl-devel
+    wget http://www.keepalived.org/software/keepalived-2.0.19.tar.gz
+    tar -zxvf keepalived-2.0.19.tar.gz
+    cd keepalived-2.0.19
+    ./configure --prefix=/; make; make install
+    chkconfig keepalived on
 
     # Setup keepalived.conf
     KEEPALIVED_CFG=/etc/keepalived/keepalived.conf
