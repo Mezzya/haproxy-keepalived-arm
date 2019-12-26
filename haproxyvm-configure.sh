@@ -85,6 +85,9 @@ defaults
     mode    http
     option  httplog
     option  dontlognull
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
     
 
 # Listen on all IP addresses. This is required for load balancer probe to work
